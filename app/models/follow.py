@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey, TIMESTAMP, CheckConstraint
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 class Follow(Base):
@@ -10,4 +11,16 @@ class Follow(Base):
     
     __table_args__ = (
         CheckConstraint('follower_id <> following_id', name='check_not_self_follow'),
+    )
+
+    follower = relationship(
+        "User",
+        foreign_keys=[follower_id],
+        back_populates="following"
+    )
+
+    following = relationship(
+        "User",
+        foreign_keys=[following_id],
+        back_populates="followers"
     )
