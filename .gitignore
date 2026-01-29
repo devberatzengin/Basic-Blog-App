@@ -3,3 +3,7 @@ app/migrations/__pycache__
 app/migrations/versions/__pycache__
 app/migrations/env.py
 app/models/__pycache__
+.env
+app/__pycache__
+app/__init__.py
+app/migrations/versions
