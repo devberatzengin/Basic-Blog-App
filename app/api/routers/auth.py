@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.database.database import get_db
 from app.schemas.user import UserRegister, UserLogin
 from app.services.auth_service import register_user, authenticate_user
+from app.core.security import create_access_token 
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -12,18 +13,17 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
 
 @router.post("/login")
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
-    # Kullanıcıyı bul (Şifre kontrolünü şimdilik pas geçiyoruz demiştik)
     user = authenticate_user(db, user_data.email, user_data.password)
     
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, 
-            detail="E-posta hatalı"
+            detail="E-posta veya şifre hatalı"
         )
     
-    # DİKKAT: Burası şemanla tam uyumlu olmalı
-    # access_token bir STRING olmalı, user objesinin kendisi değil!
+    access_token = create_access_token(data={"user_id": user.id})
+    
     return {
-        "access_token": "gecici_token_is_active", 
+        "access_token": access_token, 
         "token_type": "bearer"
     }
