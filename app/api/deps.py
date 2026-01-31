@@ -12,9 +12,11 @@ def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ):
+    # Değişkeni burada, en tepede tanımlıyoruz ki her yerden erişilsin
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials"
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
     )
 
     try:
@@ -23,6 +25,7 @@ def get_current_user(
         if user_id is None:
             raise credentials_exception
     except JWTError:
+        # Burada artık hata vermez çünkü yukarıda tanımladık
         raise credentials_exception
 
     user = db.query(User).filter(User.id == user_id).first()
