@@ -10,7 +10,6 @@ class UserBasic(BaseModel):
         from_attributes = True
 
 class CommentCreate(BaseModel):
-    user_id: int
     post_id: int
     description: str
 

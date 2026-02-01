@@ -24,6 +24,7 @@ class PostOut(BaseModel):
     like_count: int
     created_at: datetime
     author: UserBasic   # relationship buradan gelir
+    is_liked: bool = False
 
     class Config:
         from_attributes = True

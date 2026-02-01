@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class UserRegister(BaseModel):
-    firs_name: str
+    first_name: str
     last_name: str | None = None
     email: EmailStr
     password: str
@@ -14,9 +14,12 @@ class UserLogin(BaseModel):
 
 class UserOut(BaseModel):
     id: int
-    username: str
+    first_name: str  # Sendeki modelde username yerine first_name vardı, bunu kullanıyoruz
     email: EmailStr
     created_at: datetime
+    post_count: int = 0
+    follower_count: int = 0
+    is_following: bool = False
 
     class Config:
         from_attributes = True
