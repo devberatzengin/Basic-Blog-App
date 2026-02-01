@@ -17,3 +17,14 @@ def follow_user(db:Session, follow_data:FollowCreate, owner_id:int):
     db.refresh(follow)
     return follow
 
+def unfollow_user(db: Session, follower_id: int, following_id: int):
+    follow_record = db.query(Follow).filter(
+        Follow.follower_id == follower_id,
+        Follow.following_id == following_id
+    ).first()
+
+    if follow_record:
+        db.delete(follow_record)
+        db.commit()
+        return True
+    return False
