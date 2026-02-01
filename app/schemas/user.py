@@ -14,7 +14,7 @@ class UserLogin(BaseModel):
 
 class UserOut(BaseModel):
     id: int
-    first_name: str  # Sendeki modelde username yerine first_name vardı, bunu kullanıyoruz
+    first_name: str
     email: EmailStr
     created_at: datetime
     post_count: int = 0
