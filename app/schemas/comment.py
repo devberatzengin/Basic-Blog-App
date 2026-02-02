@@ -15,6 +15,7 @@ class CommentCreate(BaseModel):
 
 class CommentOut(BaseModel):
     id: int
+    post_id: int
     content: str = Field(alias="description")
     created_at: datetime
     user: UserBasic 
