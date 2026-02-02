@@ -306,15 +306,35 @@ async function loadPostDetail(postId) {
         if (commentCountDisplay) commentCountDisplay.innerText = `${comments.length} Yorum`;
 
         if (commentsList) {
+            // 🚨 DÜZELTME 1: Div içine id ekledik (comment-5 gibi) ve comment-item sınıfını koyduk
             commentsList.innerHTML = comments.map(c => `
-                <div class="card fade-in" style="margin-bottom: 15px; padding: 20px;">
+                <div id="comment-${c.id}" class="card fade-in comment-item" style="margin-bottom: 15px; padding: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <strong>@${c.user ? c.user.first_name : "Gezgin"}</strong>
                         <small>${timeAgo(c.created_at)}</small> 
                     </div>
-                    <p>${c.content || c.description}</p>
+                    <p>${c.description || c.content}</p>
                 </div>
             `).join('') || '<p style="text-align:center;">Henüz yorum yok.</p>';
+
+            // 🚀 PARLATMA MANTIĞI
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1); // 'comment-5' değerini alır
+                
+                setTimeout(() => {
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        // 1. Yumuşak geçişle odakla
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // 2. Parlama efektini tetikle
+                        targetEl.classList.add('highlight-now');
+                        
+                        // 3. 3 saniye sonra efekti kaldır (isteğe bağlı)
+                        setTimeout(() => targetEl.classList.remove('highlight-now'), 3000);
+                    }
+                }, 400); // DOM'un render edilmesi için biraz daha güvenli bir süre
+            }
         }
 
     } catch (err) {
@@ -865,5 +885,113 @@ async function handleDeletePost(postId) {
         }
     } catch (error) {
         console.error("Silme hatası:", error);
+    }
+}
+
+
+
+// --- ARAMA MOTORU MERKEZİ ---
+const searchInput = document.getElementById('navbarSearch');
+const searchResults = document.getElementById('searchResults');
+
+if (searchInput) {
+    searchInput.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        try {
+            // Backend'deki yeni /search/ endpoint'ine gidiyoruz
+            const res = await fetch(`/search/?q=${query}`, {
+                headers: { 'Authorization': `Bearer ${state.token}` }
+            });
+            
+            const data = await res.json();
+            renderSearchResults(data);
+
+        } catch (err) {
+            console.error("Arama patladı kanka:", err);
+        }
+    });
+
+    // Sayfada başka yere tıklayınca dropdown kapansın
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.style.display = 'none';
+        }
+    });
+}
+
+
+// app.js içindeki renderSearchResults fonksiyonunun son hali:
+
+function renderSearchResults(data) {
+    let html = '';
+    
+    if (data.users && data.users.length > 0) {
+        html += `<div class="search-category">KULLANICILAR</div>`;
+        data.users.forEach(u => {
+            html += `
+                <div class="search-item" onclick="window.location.href='/profile?id=${u.id}'">
+                    <div class="mini-avatar">${u.first_name[0]}</div>
+                    <div class="info"><span class="name">${u.first_name}</span></div>
+                </div>`;
+        });
+    }
+
+    if (data.posts && data.posts.length > 0) {
+        html += `<div class="search-category">POSTLAR</div>`;
+        data.posts.forEach(p => {
+            html += `
+                <div class="search-item" onclick="window.location.href='/post/${p.id}'">
+                    <div class="icon-box">📄</div>
+                    <div class="info"><span class="name">${p.header || 'Başlıksız'}</span></div>
+                </div>`;
+        });
+    }
+
+    if (data.comments && data.comments.length > 0) {
+        html += `<div class="search-category">YORUMLAR</div>`;
+        data.comments.forEach(c => {
+            // Artık c.post_id şemadan geldiği için çalışacak!
+            html += `
+                <div class="search-item" onclick="window.location.href='/post/${c.post_id}#comment-${c.id}'">
+                    <div class="icon-box">💬</div>
+                    <div class="info">
+                        <span class="name">@${c.user ? c.user.first_name : 'Gezgin'}</span>
+                        <span class="subtext">"${c.description.substring(0, 35)}..."</span>
+                    </div>
+                </div>`;
+        });
+    }
+
+    if (html === '') {
+        html = '<p style="padding:15px; color:var(--gray-500); font-size:0.8rem;">Bulamadık kanka...</p>';
+    }
+
+    searchResults.innerHTML = html;
+    searchResults.style.display = 'block';
+}
+
+
+
+function scrollToComment(commentId) {
+    const targetId = commentId || (window.location.hash ? window.location.hash.substring(9) : null);
+    
+    if (targetId) {
+        // DOM'un render edilmesi için kısa bir delay şart
+        setTimeout(() => {
+            const targetEl = document.getElementById(`comment-${targetId}`);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetEl.classList.add('highlight-comment');
+                
+                // 3 saniye sonra vurguyu kaldır
+                setTimeout(() => targetEl.classList.remove('highlight-comment'), 3000);
+            }
+        }, 300);
     }
 }
