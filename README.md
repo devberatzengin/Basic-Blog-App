@@ -3,6 +3,7 @@
 A lightweight social blogging platform built with FastAPI. Share posts, follow users, like content, and engage with a community.
 
 **Author**: [@devberatzengin](https://github.com/devberatzengin)
+**Full Documentation**: In this repo named with documentation.html & documentation.pdf 
 
 ## ✨ Features
 
