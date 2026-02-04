@@ -16,7 +16,7 @@ def create_new_post(
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
 ):
-    return create_post(db, post.header, post.description, current_user.id)
+    return create_post(db, post_data=post, owner_id=current_user.id)
 
 @router.get("/", response_model=list[PostOut])
 def list_posts(db: Session = Depends(get_db)):
