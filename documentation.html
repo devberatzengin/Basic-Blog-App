@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DOCUMENTATION</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 28px 40px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+      color: #222;
+      background: #fff;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 12px 0;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      word-wrap: break-word;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+      text-align: left;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="minisocial---complete-project-documentation">🚀 MiniSocial -
+Complete Project Documentation</h1>
+<div data-align="center">
+<p><img
+src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white"
+alt="Python" /> <img
+src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&amp;logo=fastapi&amp;logoColor=white"
+alt="FastAPI" /> <img
+src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&amp;logo=postgresql&amp;logoColor=white"
+alt="PostgreSQL" /> <img
+src="https://img.shields.io/badge/SQLAlchemy-FBB040?style=for-the-badge&amp;logo=python&amp;logoColor=white"
+alt="SQLAlchemy" /> <img
+src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&amp;logo=jsonwebtokens&amp;logoColor=white"
+alt="JWT" /></p>
+<p><img
+src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square"
+alt="Status" /> <img
+src="https://img.shields.io/badge/Version-1.0.0-blue?style=flat-square"
+alt="Version" /> <img
+src="https://img.shields.io/badge/License-MIT-green?style=flat-square"
+alt="License" /> <img
+src="https://img.shields.io/badge/Last%20Updated-Feb%202026-orange?style=flat-square"
+alt="Last Updated" /></p>
+<p><strong>Author</strong>: <a
+href="https://github.com/devberatzengin"><span class="citation"
+data-cites="devberatzengin">@devberatzengin</span></a> |
+<strong>Repository</strong>: <a
+href="https://github.com/devberatzengin/Basic-Blog-App">GitHub</a></p>
+</div>
+<hr />
+<h2 id="quick-navigation">📑 Quick Navigation</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎯 <a href="#project-overview">Overview</a></td>
+<td>Project description &amp; objectives</td>
+</tr>
+<tr>
+<td>🏗️ <a href="#architecture">Architecture</a></td>
+<td>System design &amp; flow diagrams</td>
+</tr>
+<tr>
+<td>🛠️ <a href="#technology-stack">Tech Stack</a></td>
+<td>Technologies &amp; dependencies</td>
+</tr>
+<tr>
+<td>📸 <a href="#screenshots--live-demo">Screenshots</a></td>
+<td>UI &amp; working application</td>
+</tr>
+<tr>
+<td>🚀 <a href="#installation--setup">Installation</a></td>
+<td>Complete setup guide</td>
+</tr>
+<tr>
+<td>💾 <a href="#database-schema">Database</a></td>
+<td>Schema &amp; relationships</td>
+</tr>
+<tr>
+<td>🔌 <a href="#api-documentation">API Docs</a></td>
+<td>Endpoint reference</td>
+</tr>
+<tr>
+<td>🔐 <a href="#authentication-guide">Authentication</a></td>
+<td>JWT &amp; security</td>
+</tr>
+<tr>
+<td>💡 <a href="#common-use-cases">Use Cases</a></td>
+<td>Real-world examples</td>
+</tr>
+<tr>
+<td>📁 <a href="#project-structure">Structure</a></td>
+<td>Codebase organization</td>
+</tr>
+<tr>
+<td>👨‍💻 <a href="#development-guide">Development</a></td>
+<td>Adding features guide</td>
+</tr>
+<tr>
+<td>🌐 <a href="#deployment">Deployment</a></td>
+<td>Production deployment</td>
+</tr>
+<tr>
+<td>🐛 <a href="#troubleshooting">Troubleshooting</a></td>
+<td>Common issues &amp; fixes</td>
+</tr>
+<tr>
+<td>🤝 <a href="#contributing">Contributing</a></td>
+<td>How to contribute</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<blockquote>
+<p>A lightweight, modern social blogging platform built with
+cutting-edge Python technologies</p>
+</blockquote>
+<p><strong>MiniSocial</strong> is a lightweight social blogging platform
+that allows users to: - 📝 Create and share blog posts with rich content
+- 💬 Engage through comments and interactive discussions - 👍
+Like/unlike posts to show appreciation - 👥 Follow/unfollow users for
+personalized feeds - 🔍 Search posts and discover users - 🔐 Secure
+accounts with JWT authentication - 📱 Responsive design for all
+devices</p>
+<h3 id="key-features-at-a-glance">⚡ Key Features at a Glance</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 43%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔐 <strong>JWT Authentication</strong></td>
+<td>Secure token-based authentication</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>📝 <strong>Post Management</strong></td>
+<td>Create, read, delete posts</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>💬 <strong>Comments</strong></td>
+<td>Comment on posts</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>👍 <strong>Likes System</strong></td>
+<td>Like/unlike posts &amp; comments</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>👥 <strong>Follow System</strong></td>
+<td>Follow/unfollow users</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>🔍 <strong>Advanced Search</strong></td>
+<td>Search posts &amp; users</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>👤 <strong>User Profiles</strong></td>
+<td>Public profiles with stats</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>📊 <strong>Feed Algorithm</strong></td>
+<td>Personalized post feed</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>🌙 <strong>Dark Mode</strong></td>
+<td>Dark theme option</td>
+<td>🔄 Planned</td>
+</tr>
+<tr>
+<td>📸 <strong>Image Upload</strong></td>
+<td>Post image attachments</td>
+<td>🔄 Planned</td>
+</tr>
+<tr>
+<td>🔔 <strong>Notifications</strong></td>
+<td>Real-time notifications</td>
+<td>🔄 Planned</td>
+</tr>
+<tr>
+<td>💌 <strong>Direct Messages</strong></td>
+<td>User-to-user messaging</td>
+<td>🔄 Planned</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-objectives">🎯 Key Objectives</h3>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>💎 <strong>User Experience</strong></td>
+<td>Provide simple, intuitive social networking</td>
+</tr>
+<tr>
+<td>🏆 <strong>Best Practices</strong></td>
+<td>Demonstrate modern web development patterns</td>
+</tr>
+<tr>
+<td>⚙️ <strong>Technology</strong></td>
+<td>Showcase cutting-edge Python frameworks</td>
+</tr>
+<tr>
+<td>🔒 <strong>Security</strong></td>
+<td>Ensure data protection with JWT &amp; hashing</td>
+</tr>
+<tr>
+<td>📈 <strong>Scalability</strong></td>
+<td>Build architecture ready for growth</td>
+</tr>
+<tr>
+<td>📚 <strong>Learning</strong></td>
+<td>Educational resource for developers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="target-users">🎓 Target Users</h3>
+<pre><code>┌─────────────────────────────────────┐
+│ 👨‍💻 Developers Learning FastAPI        │
+│ 📝 Content Creators                 │
+│ 🏢 Teams Building Social Features   │
+│ 🔬 Students Studying Web Dev        │
+└─────────────────────────────────────┘</code></pre>
+<hr />
+<h2 id="screenshots-live-demo">📸 Screenshots &amp; Live Demo</h2>
+<blockquote>
+<p><strong>Note</strong>: Add your application screenshots here. Follow
+these steps: 1. Run your application:
+<code>cd app &amp;&amp; uvicorn main:app --reload</code> 2. Take
+screenshots of each page: - Login page:
+<code>http://localhost:8000/login</code> - Registration:
+<code>http://localhost:8000/register</code> - Feed:
+<code>http://localhost:8000/feed</code> - Profile:
+<code>http://localhost:8000/profile</code> - Post detail:
+<code>http://localhost:8000/post/1</code> 3. Create
+<code>screenshots/</code> folder in project root 4. Add images below
+with: <code>![Alt text](screenshots/image-name.png)</code></p>
+</blockquote>
+<h3 id="application-pages">Application Pages</h3>
+<p><strong>Login &amp; Registration</strong> <img
+src="screenshots/login.png" alt="Login Page" /></p>
+<p><em>Screenshot: Login page — clean login form with username/password
+fields.</em></p>
+<p><strong>Feed Page</strong> <img src="screenshots/feed.png"
+alt="Feed Page" /></p>
+<p><em>Screenshot: Feed — list of posts with interaction buttons
+(like/comment).</em></p>
+<p><strong>Profile Page</strong> <img src="screenshots/profile.png"
+alt="Profile Page" /></p>
+<p><em>Screenshot: Profile — user info, bio, posts and follower
+stats.</em></p>
+<p><strong>Post Detail</strong> <img src="screenshots/post-detail.png"
+alt="Post Detail" /></p>
+<p><em>Screenshot: Post detail — full post view with comments and
+actions.</em></p>
+<h3 id="api-documentation-ui">API Documentation UI</h3>
+<p>The application includes interactive API documentation:</p>
+<ul>
+<li><strong>Swagger UI</strong> (Recommended):
+http://localhost:8000/docs</li>
+<li><strong>ReDoc</strong> (Alternative):
+http://localhost:8000/redoc</li>
+</ul>
+<p>Both provide: - ✅ Full API endpoint listing - ✅ Request/response
+schemas - ✅ Try-it-out functionality - ✅ Authentication testing</p>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<h3 id="high-level-architecture">High-Level Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    Frontend (Browser)                        │
+│              HTML/CSS/JavaScript Templates                   │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ HTTP/HTTPS
+┌──────────────────────▼──────────────────────────────────────┐
+│                   FastAPI Application                        │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │              API Routes &amp; Controllers               │    │
+│  │  • Authentication   • Posts   • Comments            │    │
+│  │  • Users            • Likes   • Follow              │    │
+│  │  • Search           • Profile • Notifications       │    │
+│  └─────────────────────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │            Business Logic &amp; Services                │    │
+│  │  • PostService  • UserService  • CommentService     │    │
+│  └─────────────────────────────────────────────────────┘    │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ SQL
+┌──────────────────────▼──────────────────────────────────────┐
+│              PostgreSQL Database                             │
+│  • Users Table       • Posts Table     • Comments Table      │
+│  • Likes Table       • Follow Table    • Sessions Table      │
+└──────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="requestresponse-flow">Request/Response Flow</h3>
+<ol type="1">
+<li><strong>Client Request</strong>: User sends HTTP request through
+browser or API client</li>
+<li><strong>Authentication</strong>: JWT token validated in request
+header</li>
+<li><strong>Route Handler</strong>: FastAPI route processes request</li>
+<li><strong>Service Layer</strong>: Business logic executed</li>
+<li><strong>Database Query</strong>: SQLAlchemy ORM queries
+PostgreSQL</li>
+<li><strong>Response</strong>: JSON response sent back to client</li>
+</ol>
+<hr />
+<h2 id="technology-stack">Technology Stack</h2>
+<h3 id="core-technologies">🎯 Core Technologies</h3>
+<div data-align="center">
+<p><strong>Backend</strong><br />
+<img
+src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&amp;logo=fastapi&amp;logoColor=white"
+alt="FastAPI" /> <img
+src="https://img.shields.io/badge/Uvicorn-499848?style=flat-square&amp;logo=gunicorn&amp;logoColor=white"
+alt="Uvicorn" /> <img
+src="https://img.shields.io/badge/Python%203.8+-3776AB?style=flat-square&amp;logo=python&amp;logoColor=white"
+alt="Python" /></p>
+<p><strong>Database</strong><br />
+<img
+src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&amp;logo=postgresql&amp;logoColor=white"
+alt="PostgreSQL" /> <img
+src="https://img.shields.io/badge/SQLAlchemy-FBB040?style=flat-square&amp;logo=python&amp;logoColor=white"
+alt="SQLAlchemy" /> <img
+src="https://img.shields.io/badge/Alembic-003B57?style=flat-square&amp;logo=database&amp;logoColor=white"
+alt="Alembic" /></p>
+<p><strong>Frontend</strong><br />
+<img
+src="https://img.shields.io/badge/HTML5-E34C26?style=flat-square&amp;logo=html5&amp;logoColor=white"
+alt="HTML5" /> <img
+src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&amp;logo=css3&amp;logoColor=white"
+alt="CSS3" /> <img
+src="https://img.shields.io/badge/Jinja2-B41717?style=flat-square&amp;logo=jinja&amp;logoColor=white"
+alt="Jinja2" /></p>
+<p><strong>Security</strong><br />
+<img
+src="https://img.shields.io/badge/JWT-000000?style=flat-square&amp;logo=jsonwebtokens&amp;logoColor=white"
+alt="JWT" /> <img
+src="https://img.shields.io/badge/Passlib-Security-green?style=flat-square"
+alt="Passlib" /> <img
+src="https://img.shields.io/badge/Dotenv-Config-blue?style=flat-square"
+alt="Dotenv" /></p>
+</div>
+<h3 id="detailed-stack">📦 Detailed Stack</h3>
+<p><strong>Backend Framework</strong> - <strong>FastAPI</strong>
+(0.95+): Modern, fast async web framework with automatic API
+documentation - <strong>Uvicorn</strong>: Lightning-fast ASGI web server
+implementation - <strong>Python</strong> (3.8+): Core language with
+async/await support</p>
+<p><strong>Database &amp; ORM</strong> - <strong>PostgreSQL</strong>
+(10+): Production-grade relational database -
+<strong>SQLAlchemy</strong> (2.0+): Powerful SQL toolkit and ORM -
+<strong>Alembic</strong> (1.10+): Lightweight database migration tool -
+<strong>psycopg2-binary</strong>: PostgreSQL driver for Python</p>
+<p><strong>Frontend &amp; Templates</strong> - <strong>Jinja2</strong>:
+Powerful template engine for dynamic HTML - <strong>HTML5</strong>:
+Semantic markup for modern web - <strong>CSS3</strong>: Modern styling
+with responsive design</p>
+<p><strong>Security &amp; Authentication</strong> -
+<strong>JWT</strong>: Stateless token-based authentication -
+<strong>Passlib</strong>: Password hashing with bcrypt -
+<strong>python-dotenv</strong>: Secure environment variable
+management</p>
+<p><strong>Development Tools</strong> - <strong>pytest</strong>:
+Comprehensive testing framework - <strong>Black</strong>: Code formatter
+for consistency - <strong>flake8</strong>: Style guide enforcement -
+<strong>mypy</strong>: Static type checking</p>
+<hr />
+<h2 id="installation-setup">Installation &amp; Setup</h2>
+<h3 id="step-1-prerequisites">Step 1: Prerequisites</h3>
+<p><strong>System Requirements:</strong> - Python 3.8 or higher -
+PostgreSQL 10 or higher - Git - pip (Python package manager)</p>
+<p><strong>Check installed versions:</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">--version</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div>
+<h3 id="step-2-clone-repository">Step 2: Clone Repository</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/devberatzengin/Basic-Blog-App.git</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">&quot;Basic Blog App&quot;</span></span></code></pre></div>
+<h3 id="step-3-create-virtual-environment">Step 3: Create Virtual
+Environment</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create venv</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate venv</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># On macOS/Linux:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># On Windows:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">venv\Scripts\activate</span></span></code></pre></div>
+<h3 id="step-4-install-dependencies">Step 4: Install Dependencies</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div>
+<p><strong>What’s installed:</strong> - fastapi: Web framework -
+uvicorn: Web server - sqlalchemy: ORM - psycopg2-binary: PostgreSQL
+driver - alembic: Migrations - python-dotenv: Environment management</p>
+<h3 id="step-5-setup-database">Step 5: Setup Database</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create database</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">createdb</span> blog_db</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative using psql:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> postgres <span class="at">-c</span> <span class="st">&quot;CREATE DATABASE blog_db;&quot;</span></span></code></pre></div>
+<h3 id="step-6-configure-environment">Step 6: Configure Environment</h3>
+<p>Create <code>.env</code> file in project root:</p>
+<pre class="env"><code># Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/blog_db
+
+# Security
+SECRET_KEY=your-super-secret-key-here-change-this-in-production
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# Server (Optional)
+DEBUG=True
+SERVER_HOST=0.0.0.0
+SERVER_PORT=8000</code></pre>
+<p><strong>How to generate SECRET_KEY:</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">&quot;import secrets; print(secrets.token_urlsafe(32))&quot;</span></span></code></pre></div>
+<h3 id="step-7-run-database-migrations">Step 7: Run Database
+Migrations</h3>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> upgrade head</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<p>This creates all necessary tables in the database.</p>
+<h3 id="step-8-start-server">Step 8: Start Server</h3>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> main:app <span class="at">--reload</span> <span class="at">--host</span> 0.0.0.0 <span class="at">--port</span> 8000</span></code></pre></div>
+<p><strong>Output:</strong></p>
+<pre><code>INFO:     Uvicorn running on http://0.0.0.0:8000
+INFO:     Application startup complete</code></pre>
+<h3 id="step-9-access-application">Step 9: Access Application</h3>
+<ul>
+<li><strong>Web</strong>: http://localhost:8000</li>
+<li><strong>API Docs</strong>: http://localhost:8000/docs</li>
+<li><strong>Alternative API Docs</strong>:
+http://localhost:8000/redoc</li>
+</ul>
+<hr />
+<h2 id="database-schema">Database Schema</h2>
+<h3 id="er-diagram">ER Diagram</h3>
+<pre><code>┌─────────────┐         ┌──────────────┐
+│   Users     │         │    Posts     │
+├─────────────┤         ├──────────────┤
+│ id (PK)     │────────▶│ id (PK)      │
+│ username    │         │ user_id (FK) │
+│ email       │         │ title        │
+│ password    │         │ content      │
+│ created_at  │         │ created_at   │
+└─────────────┘         └──────────────┘
+      ▲                        │
+      │                        │
+      │                    ┌───┴────────┐
+      │                    │            │
+      │              ┌─────────┐   ┌───────────┐
+      │              │Comments │   │   Likes   │
+      │              ├─────────┤   ├───────────┤
+      │              │ id (PK) │   │ id (PK)   │
+      │              │post_id  │   │ post_id   │
+      └──────────────┤user_id  │   │ user_id   │
+                     │content  │   └───────────┘
+                     └─────────┘
+
+┌──────────┐         ┌──────────────┐
+│  Users   │         │   Follows    │
+├──────────┤         ├──────────────┤
+│ id       │────────▶│ follower_id  │
+│          │         │ following_id │
+└──────────┘         └──────────────┘</code></pre>
+<h3 id="tables-detailed">Tables Detailed</h3>
+<h4 id="users-table">Users Table</h4>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> users (</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    username <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">UNIQUE</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">UNIQUE</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    password_hash <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    first_name <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    last_name <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    bio TEXT,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    profile_picture_url <span class="dt">VARCHAR</span>(<span class="dv">500</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    updated_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p><strong>Fields:</strong> - <code>id</code>: Unique user identifier -
+<code>username</code>: Unique username for login - <code>email</code>:
+User email address - <code>password_hash</code>: Hashed password (never
+store plain text!) - <code>first_name</code>, <code>last_name</code>:
+User’s name - <code>bio</code>: User biography -
+<code>profile_picture_url</code>: Avatar image URL -
+<code>created_at</code>: Registration timestamp -
+<code>updated_at</code>: Last update timestamp</p>
+<h4 id="posts-table">Posts Table</h4>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> posts (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    user_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    title <span class="dt">VARCHAR</span>(<span class="dv">500</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    content TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    likes_count <span class="dt">INTEGER</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    comments_count <span class="dt">INTEGER</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    updated_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (user_id) <span class="kw">REFERENCES</span> users(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p><strong>Fields:</strong> - <code>id</code>: Unique post identifier -
+<code>user_id</code>: Author of the post - <code>title</code>: Post
+title - <code>content</code>: Post content/body -
+<code>likes_count</code>: Number of likes (cached) -
+<code>comments_count</code>: Number of comments (cached) -
+<code>created_at</code>: Post creation date - <code>updated_at</code>:
+Last edit date</p>
+<h4 id="comments-table">Comments Table</h4>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> comments (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    post_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    user_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    content TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (post_id) <span class="kw">REFERENCES</span> posts(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (user_id) <span class="kw">REFERENCES</span> users(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h4 id="likes-table">Likes Table</h4>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> likes (</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    post_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    user_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(post_id, user_id),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (post_id) <span class="kw">REFERENCES</span> posts(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (user_id) <span class="kw">REFERENCES</span> users(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h4 id="follow-table">Follow Table</h4>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> follows (</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    follower_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    following_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(follower_id, following_id),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (follower_id) <span class="kw">REFERENCES</span> users(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (following_id) <span class="kw">REFERENCES</span> users(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<hr />
+<h2 id="api-documentation">API Documentation</h2>
+<h3 id="base-url">Base URL</h3>
+<pre><code>http://localhost:8000/api</code></pre>
+<h3 id="authentication-header">Authentication Header</h3>
+<p>For protected endpoints, include:</p>
+<pre><code>Authorization: Bearer &lt;your_jwt_token&gt;</code></pre>
+<h3 id="response-format">Response Format</h3>
+<p>All responses are JSON:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="st">&quot;success&quot;</span><span class="fu">,</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Operation successful&quot;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="error-responses">Error Responses</h3>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;detail&quot;</span><span class="fu">:</span> <span class="st">&quot;Error message here&quot;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="http-status-codes">HTTP Status Codes</h3>
+<ul>
+<li><code>200 OK</code>: Successful GET/POST</li>
+<li><code>201 Created</code>: Resource created</li>
+<li><code>204 No Content</code>: Successful DELETE</li>
+<li><code>400 Bad Request</code>: Invalid input</li>
+<li><code>401 Unauthorized</code>: Missing/invalid token</li>
+<li><code>403 Forbidden</code>: Access denied</li>
+<li><code>404 Not Found</code>: Resource not found</li>
+<li><code>500 Internal Server Error</code>: Server error</li>
+</ul>
+<hr />
+<h2 id="authentication-guide">Authentication Guide</h2>
+<h3 id="jwt-token-flow">JWT Token Flow</h3>
+<pre><code>┌──────────────────────────────────────────────────┐
+│ 1. User Submits Username &amp; Password              │
+└─────────────────────┬────────────────────────────┘
+                      │
+┌─────────────────────▼────────────────────────────┐
+│ 2. Server Validates Credentials                  │
+│    (Check username exists, password matches)     │
+└─────────────────────┬────────────────────────────┘
+                      │
+┌─────────────────────▼────────────────────────────┐
+│ 3. Server Creates JWT Token                      │
+│    Token = Header.Payload.Signature              │
+└─────────────────────┬────────────────────────────┘
+                      │
+┌─────────────────────▼────────────────────────────┐
+│ 4. Server Sends Token to Client                  │
+└─────────────────────┬────────────────────────────┘
+                      │
+┌─────────────────────▼────────────────────────────┐
+│ 5. Client Stores Token (localStorage/cookies)   │
+└──────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────┐
+│ 6. Client Includes Token in Request Header       │
+│    Authorization: Bearer eyJhbGc...              │
+└─────────────────────┬────────────────────────────┘
+                      │
+┌─────────────────────▼────────────────────────────┐
+│ 7. Server Validates Token                        │
+│    (Check signature, expiry, claims)             │
+└─────────────────────┬────────────────────────────┘
+                      │
+         ┌────────────┴────────────┐
+         │                         │
+      Valid                    Invalid
+         │                         │
+    Process Request         Return 401 Error</code></pre>
+<h3 id="registration-example">Registration Example</h3>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST <span class="st">&quot;http://localhost:8000/auth/register&quot;</span> <span class="dt">\</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">&#39;{</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;username&quot;: &quot;john_doe&quot;,</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;email&quot;: &quot;john@example.com&quot;,</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;password&quot;: &quot;secure_password_123&quot;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">  }&#39;</span></span></code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;john_doe&quot;</span><span class="fu">,</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;john@example.com&quot;</span><span class="fu">,</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;created_at&quot;</span><span class="fu">:</span> <span class="st">&quot;2024-02-04T10:30:00&quot;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="login-example">Login Example</h3>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST <span class="st">&quot;http://localhost:8000/auth/login&quot;</span> <span class="dt">\</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">&#39;{</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;username&quot;: &quot;john_doe&quot;,</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;password&quot;: &quot;secure_password_123&quot;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="st">  }&#39;</span></span></code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;access_token&quot;</span><span class="fu">:</span> <span class="st">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="fu">,</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;token_type&quot;</span><span class="fu">:</span> <span class="st">&quot;bearer&quot;</span><span class="fu">,</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;expires_in&quot;</span><span class="fu">:</span> <span class="dv">1800</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="using-token">Using Token</h3>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> GET <span class="st">&quot;http://localhost:8000/posts/&quot;</span> <span class="dt">\</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span></span></code></pre></div>
+<hr />
+<h2 id="common-use-cases">Common Use Cases</h2>
+<h3 id="use-case-1-user-registration-login">Use Case 1: User
+Registration &amp; Login</h3>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Register</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>auth<span class="op">/</span>register</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;username&quot;</span>: <span class="st">&quot;alice&quot;</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;email&quot;</span>: <span class="st">&quot;alice@example.com&quot;</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;password&quot;</span>: <span class="st">&quot;password123&quot;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Login</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>auth<span class="op">/</span>login</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;username&quot;</span>: <span class="st">&quot;alice&quot;</span>,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;password&quot;</span>: <span class="st">&quot;password123&quot;</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Response includes: access_token</span></span></code></pre></div>
+<h3 id="use-case-2-create-publish-post">Use Case 2: Create &amp; Publish
+Post</h3>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create post</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>posts<span class="op">/</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Authorization: Bearer <span class="op">&lt;</span>token<span class="op">&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;My First Post&quot;</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;content&quot;</span>: <span class="st">&quot;This is my first blog post on MiniSocial!&quot;</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Response: Created post with ID</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;id&quot;</span>: <span class="dv">1</span>,</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;title&quot;</span>: <span class="st">&quot;My First Post&quot;</span>,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;content&quot;</span>: <span class="st">&quot;This is my first blog post on MiniSocial!&quot;</span>,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;user_id&quot;</span>: <span class="dv">1</span>,</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;created_at&quot;</span>: <span class="st">&quot;2024-02-04T10:35:00&quot;</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="use-case-3-like-a-post">Use Case 3: Like a Post</h3>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Like post</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>likes<span class="op">/</span><span class="dv">1</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Authorization: Bearer <span class="op">&lt;</span>token<span class="op">&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Unlike post</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>DELETE <span class="op">/</span>likes<span class="op">/</span><span class="dv">1</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>Authorization: Bearer <span class="op">&lt;</span>token<span class="op">&gt;</span></span></code></pre></div>
+<h3 id="use-case-4-comment-on-post">Use Case 4: Comment on Post</h3>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add comment</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>comments<span class="op">/</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Authorization: Bearer <span class="op">&lt;</span>token<span class="op">&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;post_id&quot;</span>: <span class="dv">1</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;content&quot;</span>: <span class="st">&quot;Great post! I enjoyed reading this.&quot;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all comments for post</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>GET <span class="op">/</span>comments<span class="op">/</span><span class="dv">1</span></span></code></pre></div>
+<h3 id="use-case-5-follow-user-view-feed">Use Case 5: Follow User &amp;
+View Feed</h3>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Follow user</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>POST <span class="op">/</span>follow<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>Authorization: Bearer <span class="op">&lt;</span>token<span class="op">&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get your followers</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>GET <span class="op">/</span>follow<span class="op">/</span>followers<span class="op">/</span><span class="dv">1</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get posts from followed users</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>GET <span class="op">/</span>posts<span class="op">/</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (Shows posts from users you follow)</span></span></code></pre></div>
+<h3 id="use-case-6-search">Use Case 6: Search</h3>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Search posts by keyword</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>GET <span class="op">/</span>search<span class="op">/</span>posts?q<span class="op">=</span>python</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Search users by username</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>GET <span class="op">/</span>search<span class="op">/</span>users?q<span class="op">=</span>john</span></code></pre></div>
+<hr />
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>Basic Blog App/
+│
+├── app/
+│   ├── __init__.py                 # Package initialization
+│   ├── main.py                     # FastAPI app entry point
+│   ├── alembic.ini                 # Alembic configuration
+│   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── deps.py                 # Dependency injection (get_db, get_current_user)
+│   │   └── routers/
+│   │       ├── __init__.py
+│   │       ├── auth.py             # Authentication routes
+│   │       ├── user.py             # User management routes
+│   │       ├── post.py             # Post routes
+│   │       ├── comment.py          # Comment routes
+│   │       ├── like.py             # Like routes
+│   │       ├── follow.py           # Follow routes
+│   │       └── search.py           # Search routes
+│   │
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py               # Settings &amp; configuration
+│   │   └── security.py             # JWT &amp; password utilities
+│   │
+│   ├── database/
+│   │   ├── __init__.py
+│   │   └── database.py             # SQLAlchemy setup, session management
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py                 # User ORM model
+│   │   ├── post.py                 # Post ORM model
+│   │   ├── comment.py              # Comment ORM model
+│   │   ├── like.py                 # Like ORM model
+│   │   └── follow.py               # Follow ORM model
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── auth.py                 # Authentication schemas (register, login)
+│   │   ├── user.py                 # User request/response schemas
+│   │   ├── post.py                 # Post schemas
+│   │   ├── comment.py              # Comment schemas
+│   │   ├── like.py                 # Like schemas
+│   │   ├── follow.py               # Follow schemas
+│   │   └── search.py               # Search schemas
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── user_service.py         # User business logic
+│   │   ├── post_service.py         # Post business logic
+│   │   ├── comment_service.py      # Comment business logic
+│   │   └── search_service.py       # Search business logic
+│   │
+│   ├── views/
+│   │   ├── base.html               # Base template
+│   │   ├── login.html              # Login page
+│   │   ├── register.html           # Registration page
+│   │   ├── feed.html               # Posts feed page
+│   │   ├── profile.html            # User profile page
+│   │   ├── post_detail.html        # Single post page
+│   │   └── static/
+│   │       ├── css/
+│   │       │   └── style.css
+│   │       └── js/
+│   │           └── main.js
+│   │
+│   └── migrations/
+│       ├── env.py                  # Alembic migration environment
+│       ├── script.py.mako          # Migration template
+│       └── versions/               # Migration files
+│
+├── requirements.txt                # Project dependencies
+├── .env                            # Environment variables (DO NOT COMMIT)
+├── .gitignore                      # Git ignore rules
+├── README.md                       # Quick start guide
+└── DOCUMENTATION.md               # This file</code></pre>
+<h3 id="key-files-explained">Key Files Explained</h3>
+<p><strong>main.py</strong> - Initializes FastAPI application - Mounts
+static files - Configures Jinja2 templates - Includes API routers</p>
+<p><strong>deps.py</strong> - <code>get_db()</code>: Database session
+dependency - <code>get_current_user()</code>: Current authenticated user
+dependency</p>
+<p><strong>config.py</strong> - Database URL configuration - JWT
+settings - API settings</p>
+<p><strong>security.py</strong> - <code>hash_password()</code>: Hash
+user passwords - <code>verify_password()</code>: Verify password against
+hash - <code>create_access_token()</code>: Generate JWT tokens -
+<code>verify_token()</code>: Validate JWT tokens</p>
+<hr />
+<h2 id="development-guide">Development Guide</h2>
+<h3 id="adding-a-new-feature">Adding a New Feature</h3>
+<h4 id="step-1-create-model-modelsnew_feature.py">Step 1: Create Model
+(models/new_feature.py)</h4>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> Column, Integer, String, ForeignKey</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.database.database <span class="im">import</span> Base</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewFeature(Base):</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    __tablename__ <span class="op">=</span> <span class="st">&quot;new_features&quot;</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> Column(Integer, primary_key<span class="op">=</span><span class="va">True</span>, index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    user_id <span class="op">=</span> Column(Integer, ForeignKey(<span class="st">&quot;users.id&quot;</span>), nullable<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> Column(String, nullable<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<h4 id="step-2-create-schema-schemasnew_feature.py">Step 2: Create
+Schema (schemas/new_feature.py)</h4>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewFeatureBase(BaseModel):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewFeatureCreate(NewFeatureBase):</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewFeatureOut(NewFeatureBase):</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    user_id: <span class="bu">int</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Config:</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>        from_attributes <span class="op">=</span> <span class="va">True</span></span></code></pre></div>
+<h4 id="step-3-create-service-servicesnew_feature_service.py">Step 3:
+Create Service (services/new_feature_service.py)</h4>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy.orm <span class="im">import</span> Session</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.models.new_feature <span class="im">import</span> NewFeature</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.schemas.new_feature <span class="im">import</span> NewFeatureCreate</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_new_feature(db: Session, feature: NewFeatureCreate, user_id: <span class="bu">int</span>):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    db_feature <span class="op">=</span> NewFeature(<span class="op">**</span>feature.<span class="bu">dict</span>(), user_id<span class="op">=</span>user_id)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    db.add(db_feature)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    db.commit()</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    db.refresh(db_feature)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> db_feature</span></code></pre></div>
+<h4 id="step-4-create-route-apiroutersnew_feature.py">Step 4: Create
+Route (api/routers/new_feature.py)</h4>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> APIRouter, Depends</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy.orm <span class="im">import</span> Session</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.api.deps <span class="im">import</span> get_db, get_current_user</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.schemas.new_feature <span class="im">import</span> NewFeatureCreate, NewFeatureOut</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.services.new_feature_service <span class="im">import</span> create_new_feature</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>router <span class="op">=</span> APIRouter(prefix<span class="op">=</span><span class="st">&quot;/features&quot;</span>, tags<span class="op">=</span>[<span class="st">&quot;Features&quot;</span>])</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="at">@router.post</span>(<span class="st">&quot;/&quot;</span>, response_model<span class="op">=</span>NewFeatureOut)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_feature(</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    feature: NewFeatureCreate,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    db: Session <span class="op">=</span> Depends(get_db),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    current_user <span class="op">=</span> Depends(get_current_user)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> create_new_feature(db, feature, current_user.<span class="bu">id</span>)</span></code></pre></div>
+<h4 id="step-5-include-router-in-main.py">Step 5: Include Router in
+main.py</h4>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.api.routers <span class="im">import</span> new_feature</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>app.include_router(new_feature.router)</span></code></pre></div>
+<h4 id="step-6-create-migration">Step 6: Create Migration</h4>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> revision <span class="at">--autogenerate</span> <span class="at">-m</span> <span class="st">&quot;Add new_features table&quot;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> upgrade head</span></code></pre></div>
+<h3 id="testing">Testing</h3>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run tests</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run with coverage</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">--cov</span><span class="op">=</span>app</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run specific test file</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> tests/test_auth.py</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Run with verbose output</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-v</span></span></code></pre></div>
+<h3 id="code-style">Code Style</h3>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format code with Black</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ex">black</span> app/</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check with flake8</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="ex">flake8</span> app/</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Type checking with mypy</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mypy</span> app/</span></code></pre></div>
+<hr />
+<h2 id="deployment">Deployment</h2>
+<h3 id="option-1-deploy-to-heroku">Option 1: Deploy to Heroku</h3>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Install Heroku CLI</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> tap heroku/brew <span class="kw">&amp;&amp;</span> <span class="ex">brew</span> install heroku</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Login</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ex">heroku</span> login</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Create app</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="ex">heroku</span> create your-app-name</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add PostgreSQL</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="ex">heroku</span> addons:create heroku-postgresql:hobby-dev</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Set environment variables</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="ex">heroku</span> config:set SECRET_KEY=your-secret-key</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="ex">heroku</span> config:set ALGORITHM=HS256</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Deploy</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push heroku main</span></code></pre></div>
+<h3 id="option-2-deploy-to-aws-ec2">Option 2: Deploy to AWS EC2</h3>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. SSH into EC2 instance</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> your-key.pem ec2-user@your-instance-ip</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Install dependencies</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install python3 postgresql postgresql-server git</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Clone repository</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone your-repo-url</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Basic-Blog-App</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Create virtual environment and install packages</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv venv</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Create .env file with production settings</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .env</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Run migrations</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> upgrade head</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Start with Gunicorn</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install gunicorn</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="ex">gunicorn</span> <span class="at">-w</span> 4 <span class="at">-b</span> 0.0.0.0:8000 main:app</span></code></pre></div>
+<h3 id="option-3-docker-deployment">Option 3: Docker Deployment</h3>
+<p>Create <code>Dockerfile</code>:</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> requirements.txt .</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;uvicorn&quot;</span>, <span class="st">&quot;app.main:app&quot;</span>, <span class="st">&quot;--host&quot;</span>, <span class="st">&quot;0.0.0.0&quot;</span>, <span class="st">&quot;--port&quot;</span>, <span class="st">&quot;8000&quot;</span>]</span></code></pre></div>
+<p>Build and run:</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> minisocial .</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 8000:8000 <span class="at">--env-file</span> .env minisocial</span></code></pre></div>
+<h3 id="production-checklist">Production Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Set <code>DEBUG = False</code> in
+production</label></li>
+<li><label><input type="checkbox" />Generate strong
+<code>SECRET_KEY</code></label></li>
+<li><label><input type="checkbox" />Use HTTPS</label></li>
+<li><label><input type="checkbox" />Set up proper database
+backups</label></li>
+<li><label><input type="checkbox" />Configure CORS settings</label></li>
+<li><label><input type="checkbox" />Set up logging and
+monitoring</label></li>
+<li><label><input type="checkbox" />Use environment variables for
+sensitive data</label></li>
+<li><label><input type="checkbox" />Set up rate limiting</label></li>
+<li><label><input type="checkbox" />Enable HTTPS redirects</label></li>
+<li><label><input type="checkbox" />Configure allowed hosts</label></li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="problem-connection-refused-psycopg2.operationalerror">Problem:
+Connection refused (psycopg2.OperationalError)</h3>
+<p><strong>Cause</strong>: PostgreSQL is not running or connection
+string is wrong</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start PostgreSQL</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> services start postgresql  <span class="co"># macOS</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service postgresql start   <span class="co"># Linux</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_ctl</span> start                    <span class="co"># Windows</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify connection</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> postgres <span class="at">-d</span> blog_db</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check connection string in .env</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="va">DATABASE_URL</span><span class="op">=</span>postgresql://username:password@localhost:5432/blog_db</span></code></pre></div>
+<h3 id="problem-no-such-file-or-directory-alembic.ini">Problem: “No such
+file or directory: alembic.ini”</h3>
+<p><strong>Cause</strong>: Running command from wrong directory</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app  <span class="co"># Navigate to app directory first</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> upgrade head</span></code></pre></div>
+<h3 id="problem-jwt-token-expired">Problem: JWT token expired</h3>
+<p><strong>Cause</strong>: Token expires after configured time (default
+30 minutes)</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Login again to get new token</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># OR increase ACCESS_TOKEN_EXPIRE_MINUTES in .env</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="va">ACCESS_TOKEN_EXPIRE_MINUTES</span><span class="op">=</span>120  <span class="co"># 2 hours</span></span></code></pre></div>
+<h3 id="problem-unique-constraint-failed">Problem: “UNIQUE constraint
+failed”</h3>
+<p><strong>Cause</strong>: Duplicate entry (e.g., duplicate
+username)</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use unique check before insert</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>existing_user <span class="op">=</span> db.query(User).<span class="bu">filter</span>(User.username <span class="op">==</span> username).first()</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> existing_user:</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Username already exists&quot;</span>)</span></code></pre></div>
+<h3 id="problem-migrations-not-being-detected">Problem: Migrations not
+being detected</h3>
+<p><strong>Cause</strong>: alembic.ini or env.py configuration issue</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure alembic is initialized</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> current  <span class="co"># Check current revision</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Force migration detection</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> revision <span class="at">--autogenerate</span> <span class="at">-m</span> <span class="st">&quot;migration name&quot;</span></span></code></pre></div>
+<h3 id="problem-modulenotfounderror-no-module-named-app">Problem:
+“ModuleNotFoundError: No module named ‘app’”</h3>
+<p><strong>Cause</strong>: Python path not set correctly or not in
+correct directory</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run from app directory</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> main:app <span class="at">--reload</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OR set PYTHONPATH</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PYTHONPATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${PYTHONPATH}</span><span class="st">:</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<h3 id="development-workflow">Development Workflow</h3>
+<ol type="1">
+<li><p><strong>Fork the repository</strong></p>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/devberatzengin/Basic-Blog-App.git</span></code></pre></div></li>
+<li><p><strong>Create feature branch</strong></p>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/amazing-feature</span></code></pre></div></li>
+<li><p><strong>Commit changes</strong></p>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add amazing feature&quot;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Fix bug in authentication&quot;</span></span></code></pre></div></li>
+<li><p><strong>Push to branch</strong></p>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/amazing-feature</span></code></pre></div></li>
+<li><p><strong>Open Pull Request</strong></p>
+<ul>
+<li>Describe your changes clearly</li>
+<li>Reference any related issues</li>
+<li>Ensure tests pass</li>
+</ul></li>
+</ol>
+<h3 id="code-style-guidelines">Code Style Guidelines</h3>
+<ul>
+<li>Follow PEP 8</li>
+<li>Use meaningful variable names</li>
+<li>Add docstrings to functions</li>
+<li>Keep functions small and focused</li>
+<li>Add comments for complex logic</li>
+<li>Use type hints</li>
+</ul>
+<h3 id="commit-message-format">Commit Message Format</h3>
+<pre><code>[TYPE] Short description (50 chars max)
+
+Detailed explanation of changes (if needed)
+- Point 1
+- Point 2
+
+Fixes #123</code></pre>
+<p>Types: <code>feat</code>, <code>fix</code>, <code>docs</code>,
+<code>style</code>, <code>refactor</code>, <code>test</code>,
+<code>chore</code></p>
+<hr />
+<h2 id="faq">FAQ</h2>
+<p><strong>Q: How do I reset the database?</strong> A:</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dropdb</span> blog_db</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="ex">createdb</span> blog_db</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> app</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="ex">alembic</span> upgrade head</span></code></pre></div>
+<p><strong>Q: How do I change password?</strong> A: There’s no dedicated
+endpoint yet. Users need to update password via database or implement
+password change endpoint.</p>
+<p><strong>Q: Can I use SQLite instead of PostgreSQL?</strong> A: Yes,
+but it’s not recommended for production. Update DATABASE_URL to
+<code>sqlite:///./blog.db</code></p>
+<p><strong>Q: How do I add role-based access control?</strong> A: Add a
+<code>role</code> column to Users table and check role in route
+dependencies.</p>
+<p><strong>Q: Is this production-ready?</strong> A: Not yet. Add: rate
+limiting, input validation, CORS configuration, error logging.</p>
+<hr />
+<h2 id="license">License</h2>
+<p>This project is open source. See LICENSE file for details.</p>
+<h2 id="support">Support</h2>
+<ul>
+<li><strong>Issues</strong>: <a
+href="https://github.com/devberatzengin/Basic-Blog-App/issues">GitHub
+Issues</a></li>
+<li><strong>Discussions</strong>: <a
+href="https://github.com/devberatzengin/Basic-Blog-App/discussions">GitHub
+Discussions</a></li>
+<li><strong>Email</strong>: Contact project maintainer</li>
+</ul>
+<hr />
+<h2 id="version-history">Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>Feb 2024</td>
+<td>Initial release</td>
+</tr>
+<tr>
+<td>0.9.0</td>
+<td>Jan 2024</td>
+<td>Beta release</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Last Updated</strong>: February 4, 2026<br />
+<strong>Maintainer</strong>: <a
+href="https://github.com/devberatzengin"><span class="citation"
+data-cites="devberatzengin">@devberatzengin</span></a></p>
+</body>
+</html>
